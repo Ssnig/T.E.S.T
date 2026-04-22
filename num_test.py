@@ -46,17 +46,62 @@ def twod_arrarymaker():
    print(arr_2d)
    return
 
+def two_digit_calculator():
+    input_num = str(input("Enter aformula with two numbers and an operator (e.g., 3 + 4): "))
+    first_num = None
+    operator = None
+    second_num = None
+    for i in range (len(input_num)):
+        if input_num[i] .isdigit():
+            if first_num is None:
+                first_num = int(input_num[i])
+            else:
+                second_num = int(input_num[i])
+        elif input_num[i] in ['+', '-', '*', '/']:
+            operator = input_num[i]
+        elif input_num[i] == ' ':
+            continue
+    if first_num is not None and operator is not None and second_num is not None:
+        if operator == '+':
+            result = first_num + second_num
+        elif operator == '-':
+            result = first_num - second_num
+        elif operator == '*':
+            result = first_num * second_num
+        elif operator == '/':
+            if second_num != 0:
+                result = first_num / second_num
+            else:
+                print("Error: Division by zero is not allowed.")
+                return
+        print(f"The result of {first_num} {operator} {second_num} is: {result}")
+    else:
+        print("Invalid input. Please enter a valid formula.")
+        return  
+    return 
 
-print("Here are the list of functions to test:")
-print("1. arraymaker()")
-print("2. twod_arrarymaker()")
+def start():
+    print("Welcome to the number test program!")
+    while True:
+        print("\nPlease choose an option:")
+        print("1. Create a 1D array")
+        print("2. Create a 2D array")
+        print("3. Use the two-digit calculator")
+        print("4. Exit")
+        
+        choice = input("Enter your choice (1-4): ")
+        
+        match choice:
+            case "1":
+                arraymaker()
+            case "2":
+                twod_arrarymaker()
+            case "3":
+                two_digit_calculator()
+            case "4":
+                print("Exiting the program. Goodbye!")
+                break
+            case _:
+                print("Invalid choice. Please enter a number between 1 and 4.")
 
-
-
-choice = input("Enter the number corresponding to the function you want to test: ")
-
-match choice:
-    case "1":
-        arraymaker()
-    case "2":
-        twod_arrarymaker()
+start()
